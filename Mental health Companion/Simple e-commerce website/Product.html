@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mintu pandey</title>
+    <style>
+        #root{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        #root>div {
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            padding: 20px 30px ;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        #root>div:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+
+        img{
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+        }
+
+        button{
+            color: black;
+            background-color: yellow;
+            padding: 20px 20px ;
+            margin: 10px;
+            border: none;
+            border-radius: 150px;
+            transition: transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: orange;
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    const api = "https://fakestoreapi.com/products"
+
+    fetch(api)
+        .then((res) => res.json())
+        .then((data) =>{ 
+            console.log(data)
+            displayCard(data)
+        })
+        .catch((err) => console.log(err))
+        .finally(()=>console.log("Data Fetch seccessfully"))
+    console.log(data);
+    
+    function displayCard(arr) {
+        arr.forEach((el) => {
+            //console.log(el);
+
+            const box = document.createElement("div")
+            const img = document.createElement("img")
+            img.setAttribute("src", el.image)
+
+            const title = document.createElement("h3")
+            title.innerText = `Title: ${el.title}`
+
+            const category = document.createElement("h4")
+            category.innerText = `category: ${el.category}`
+
+            const description = document.createElement("p")
+            description.innerText = `description: ${el.description}`
+
+            const price = document.createElement("button")
+            price.innerText = `price: ${el.price}`
+
+            const rating = document.createElement("button")
+            rating.innerText = `rating: ${el.rating.rate}`
+
+            box.append(img, title, category, description, price, rating)
+            document.querySelector("#root").append(box)
+        });
+    }
+
+</script>
+</html>
