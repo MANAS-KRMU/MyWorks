@@ -18,7 +18,7 @@ body {
   padding: 40px 100px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 20px; 
   flex-wrap: wrap;
 }
 
